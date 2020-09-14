@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, shrink-to-fit=no">
+    <title>creditmanagement</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/master.css'%}">
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home' %}">TSF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'list' %}">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'transfer' %}">Transfer</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container jumbotron first" id="home">
+  <h1 class="display-4">Welcome to Credit Management</h1>
+  <br>
+  <div class="lists">
+    <label for="bu1">For viewing all user list  :</label>
+    <a id="bu1" class="btn btn-primary btn-lg
+    " href="{% url 'list' %}" role="button">All users</a>
+    <br><br>
+    <label for="button">For viewing all Transaction history  :</label>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+    Transaction list
+    </button>
+    <br><br>
+    <label for="bu2"> Instant Transfer  :</label>
+    <a id="bu2" class="btn btn-primary btn-lg" href="{% url 'transfer' %}" role="button">Credit Transfer</a>
+    <br><br>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Transaction list</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-sm table-striped">
+        <tbody>
+          {%for trans in Transaction%}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{trans.history}}</td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container" id="about" >
+  <h3>About</h3>
+  <h5><p>This is Task# 2 - CreditManagement for <b>The sparks foundation</b>.This is a dynamic website where you can transfer fund from one user to other.User details and thier credit have been shown in their profile
+  . Data is connected with mysql where the details of all user are saved .In transfer page after transfer it will show the success message and all the transaction history of credit transfer.<br><br><b>THE SPARKS FOUNDATION</b><br></p></h5>
+  <p>To inspire students, help them innovate and let them integrate to build the next generation humankind.
+Inspire: To inspire, motivate and encourage students to learn, create and help build a better society.
+Innovate: To teach new ways of thinking, to innovate and solve the problems on their own.
+Integrate: To let the students integrate, and help each other, learn from each other and do well together.
+<br>
+Website :https://thesparksfoundationsingapore.org <br>
+Please Join Us and Spread the Word about what we are doing. With your
+help we can reach out to more students...<br>
+
+▪ FB: <a href="https://www.facebook.com/thesparksfoundation.info ">https://www.facebook.com/thesparksfoundation.info  </a><br>
+▪ LinkedIn:<a href="https://www.linkedin.com/company/the-sparks-foundation/ ">https://www.linkedin.com/company/the-sparks-foundation/ </a><br>
+▪ TSF Network:<a href="https://www.linkedin.com/groups/10379184 ">https://www.linkedin.com/groups/10379184 </a></p></h6>
+<h4>By : Aditya Agrahari <br></h4>
+<p>▪ LinkedIn: <a href="https://www.linkedin.com/in/aditya-agrahari-618007167/">https://www.linkedin.com/in/aditya-agrahari-618007167/</a><br>
+▪ Github : <a href="https://github.com/adityanandan">https://github.com/adityanandan</a></p>
+</div>
+  </body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

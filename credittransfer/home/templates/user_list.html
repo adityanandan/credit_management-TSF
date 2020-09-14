@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>creditmanagement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/master.css'%}">
+    <link rel="stylesheet" href="{% static 'css/user.css'%}">
+
+    <style>
+      .container{
+        margin-top: 25px;
+      }
+      .col-md-3{
+        display:inline-block ;
+        margin-left: -4px;
+        margin-top:10px;
+        margin-bottom: 5px;
+      }
+      body .no-padding{
+        padding-left: 0;
+        padding-rigth:0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home' %}">TSF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'list' %}">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'transfer' %}">Transfer</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  {% for user in object_list %}
+  <div class="col-xs-3 col-sm-3 col-md-3">
+  <div class="card" style="width: 16rem;">
+  <div class="card-body">
+    <h4 class="card-title">{{user.name}}</h4>
+    <h8 class="card-subtitle">{{user.email}}</h8>
+    <br>
+    <p></p>
+    <h5> <p class="card-text"><b>CREDIT :</b> {{user.credit}}</p></h5>
+      <!-- Button trigger modal -->
+    <button type="button" onclick="fun1({{user.user_id}},'{{user.name}}',{{user.credit}},{{user.mobile}},'{{user.email}}',{{user.previous_credit}})" class="btn btn-info btn-block " data-toggle="modal" data-target="#exampleModalCenter">
+      View User
+    </button>
+    </div>
+  </div>
+</div>
+{%endfor %}
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">User_id: <label id="exampleModalLongTitle">user_id</label></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>Name : <lable id="name">name</lable></h3>
+        <h6>Email : <lable id="email">email</lable></h6>
+        <h6>Contact : <lable id="mobile">mobile</lable></h6>
+        <h6>Last Credit : <lable id="previous_credit">previous_credit</lable></h6>
+        <h4>Available Credit : <lable id="credit">CREDIT</lable></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{% url 'transfer' %}" role="button" class="btn btn-primary">TransferCredit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript">
+      function fun1(id,name,credit,mobile,email,previous_credit){
+        document.getElementById("name").innerHTML =name ;
+        document.getElementById("exampleModalLongTitle").innerHTML =id ;
+        document.getElementById("credit").innerHTML =credit ;
+        document.getElementById("mobile").innerHTML =mobile ;
+        document.getElementById("email").innerHTML =email ;
+        document.getElementById("previous_credit").innerHTML =previous_credit ;
+
+      };
+    </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </html>

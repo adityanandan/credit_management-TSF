@@ -1,0 +1,11 @@
+body{font-family: 'Roboto', sans-serif;}
+.jumbotron{
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+}
+.bg-light {
+    background-color: rgba(0,123,255,.5)!important;
+}
+.nav-link{
+  font-weight: 600;
+}

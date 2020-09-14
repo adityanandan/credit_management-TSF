@@ -1,0 +1,33 @@
+.jumbotron{
+  background-image:url(images/abc.jpg);
+}
+h1{
+  margin-bottom: 20px;
+  text-align: left;
+}
+.main{
+  margin: 30px;
+}
+label{
+  font-size: 1.2rem;
+}
+.custom-select{
+  margin-left: 10px;
+}
+#inlineSelectPref2 {
+    margin-left: 30px;
+}
+#credit{
+    margin-left: 42px;
+    display: inline-block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background-size: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+}

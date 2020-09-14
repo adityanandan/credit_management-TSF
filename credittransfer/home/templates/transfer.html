@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>creditmanagement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/master.css'%}">
+    <link rel="stylesheet" href="{% static 'css/transfer.css'%}">
+    <script type="text/javascript">
+      function validate(){
+        var select1 = document.getElementById("inlineSelectPref1");
+        var select2 = document.getElementById("inlineSelectPref2");
+        var cred_value = document.getElementById("credit");
+
+       if (select1.value == ""||select2.value == "") {
+           //If the "Please Select" option is selected display error.
+           alert("Please select an user!");
+           return false;
+       }
+       else if (select1.value == select2.value) {
+         alert("you selected transfer between same users");
+         return false;
+       }
+       else if (cred_value.value == 0) {
+         alert("Credit should be greater than 0");
+         return false;
+       }
+       return true;
+      }
+
+    </script>
+
+  <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home' %}">TSF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'list' %}">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'transfer' %}">Transfer</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="jumbotron container">
+  <form action="/analyze" method="post">
+    {%csrf_token%}
+    <h1>Credit Transfer</h1>
+    <div class="main">
+    <div class="form-group row">
+      <label for="inlineSelectPref1">From User: </label>
+      <select class="custom-select" name="from_user" id="inlineSelectPref1" style="width:400px;">
+        <option value="">select</option>
+        {%for user in users %}
+        <option value="{{user.id}}">{{user.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group row">
+      <label for="inlineSelectPref2" >To User: </label>
+      <select class="custom-select" name="to_user" id="inlineSelectPref2" required style="width:400px;">
+        <option value="">select</option>
+        {%for user in users %}
+        <option value="{{user.id}}">{{user.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group row">
+      <label for="credit">Credit:</label>
+      <input type="number" name="credit" id="credit" style="width:400px;" placeholder="amount" required>
+    </div>
+    <button type="submit" onclick="return validate()" class="btn btn-primary">Submit</button>
+  </div>
+  </form>
+</div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </html>

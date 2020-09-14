@@ -1,0 +1,42 @@
+body{font-family: 'Roboto', sans-serif;}
+
+.jumbotron{
+  /* background-image: url("https://mdbootstrap.com/img/Photos/Others/gradient1.jpg"); */
+  background-image:url(images/gradient1.jpg);
+}
+.display-4{
+   text-align: center;
+}
+label{
+  font-weight:700;
+  font-size: 1.2rem;
+  color:#000408;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #0043ff;
+    margin-left:10px;
+}
+
+.lists{
+   padding-top: 15px;
+   text-align:right;
+   margin-right: 155px;
+}
+.modal-body{
+  background-color:#91fbfb99;
+}
+#about{
+  background-image:url(images/pptpi.jpg);
+  text-align: center;
+
+}
+#about h3{
+  margin: 15px;
+  padding: 10px;
+  font-size: 3rem;
+}
+#about p{
+  margin: 10px;
+  font-size: 1.3rem;
+}
